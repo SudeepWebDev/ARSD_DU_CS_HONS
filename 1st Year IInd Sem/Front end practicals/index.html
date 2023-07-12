@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudeep</title>
+    <style>
+        .framebox {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <iframe src="header.html" name="header" width="100%" style="border: none;"></iframe>
+    <div class="framebox">
+        <iframe src="links.html" width="20%" height="500px" style="border: none;"></iframe>
+        <iframe src="" width="80%" style="border: none;" id="link-displayer">
+            Click on the left menu to show the pages here
+        </iframe>
+    </div>
+
+    <script>
+        const links = [
+            "https://www.arsdcollege.ac.in/faculty-login/",
+            "https://www.arsdcollege.ac.in/under-graduate-courses/",
+            "https://www.arsdcollege.ac.in/student-societies/"
+        ];
+
+        const linkDisplayer = document.getElementById('link-displayer');
+        const linksIframe = document.querySelector('.framebox iframe');
+
+        linksIframe.addEventListener('load', function () {
+            const buttons = linksIframe.contentDocument.querySelectorAll('.feature-button');
+
+            buttons.forEach(function (button, index) {
+                button.addEventListener('click', function () {
+                    linkDisplayer.src = links[index];
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

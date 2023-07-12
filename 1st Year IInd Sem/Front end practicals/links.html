@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+
+        #notification-banner button {
+            background-color: white;
+            color: orange;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 7px auto;
+            text-align: center;
+            border: 1px solid orange;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 200px;
+            padding: 10px;
+        }
+
+        .feature-button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            text-align: left;
+            background-color: #ffffff;
+            border: none;
+            color: #000000;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .feature-button span {
+            font-weight: normal;
+        }
+
+        .close-hide-cont {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .close-hide-cont button {
+            padding: 5px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .close-hide-cont button i {
+            font-size: 16px;
+        }
+
+        #dis-menu {
+            font-size: 18px;
+            text-align: center;
+            writing-mode: vertical-rl;
+            position: fixed;
+            top: 123px;
+            left: 0;
+            background-color: #f1f1f1;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        #dis-menu span {
+            position: absolute;
+            top: 53px;
+            color: #f1f1f1;
+            left: 27px;
+        }
+
+        #dis-menu:hover {
+            border: 1px solid orange;
+            transition: all 0.5s;
+
+        }
+
+
+        #notification-banner button:hover {
+            background: orange;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="notification-banner">
+        <div>
+
+            <button title="Faculty" class="feature-button" id="show-key-form">Faculty</button>
+            <button title="Courses" class="feature-button" id="dis-ads">Courses</button>
+            <button title="Student activities" class="feature-button" id="sch-search">Student activities</button>
+            
+            <div class="close-hide-cont">
+                <button type="button" title="Close" class="close-button">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
