@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Registration Form</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+    
+    .form-container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    label {
+      font-weight: bold;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+    
+    .form-actions {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    input[type="submit"],
+    input[type="reset"] {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #fff;
+    }
+    
+    input[type="submit"] {
+      background-color: #4CAF50;
+    }
+    
+    input[type="reset"] {
+      background-color: #f44336;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Student Registration Form</h1>
+    <form action="submit.php" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      
+      <label>Course:</label>
+      <input type="radio" id="course1" name="course" value="course1" required>
+      <label for="course1">Course 1</label>
+      <input type="radio" id="course2" name="course" value="course2" required>
+      <label for="course2">Course 2</label>
+      <br>
+      <br>
+      <label>Languages:</label>
+      <input type="checkbox" id="lang1" name="languages[]" value="English">
+      <label for="lang1">English</label>
+      <input type="checkbox" id="lang2" name="languages[]" value="Spanish">
+      <label for="lang2">Spanish</label>
+      <input type="checkbox" id="lang3" name="languages[]" value="French">
+      <label for="lang3">French</label>
+      
+      <div class="form-actions">
+        <input type="reset" value="Reset">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+</body>
+</html>
