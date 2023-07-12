@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sum and Average of Numbers</title>
+</head>
+<body>
+  <label>Enter positive numbers:</label><br>
+  <input type="number" id="number" step="any">
+  <button onclick="calculateSumAndAverage()">Add</button>
+  <button onclick="calculateResult()">Calculate</button>
+  
+  <script>
+    var numbers = [];
+    
+    function calculateSumAndAverage() {
+      var number = parseFloat(document.getElementById("number").value);
+      if (number === 0) {
+        alert("Zero entered. Calculations will be performed now.");
+        document.getElementById("number").disabled = true;
+      } else {
+        numbers.push(number);
+        document.getElementById("number").value = "";
+      }
+    }
+    
+    function calculateResult() {
+      var sum = 0;
+      for (var i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
+      }
+      
+      var average = sum / numbers.length;
+      
+      alert("Sum: " + sum + "\nAverage: " + average.toFixed(2));
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Factorial of a Number</title>
+</head>
+<body>
+  <label for="number">Enter a number:</label>
+  <input type="number" id="number">
+  <button onclick="calculateFactorial()">Calculate Factorial</button>
+  
+  <script>
+    function calculateFactorial() {
+      var number = parseInt(document.getElementById("number").value);
+      
+      var factorial = 1;
+      for (var i = 1; i <= number; i++) {
+        factorial *= i;
+      }
+      
+      alert("The factorial of " + number + " is: " + factorial);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Department Webpage</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .nav {
+      background-color: #f2f2f2;
+      padding: 10px;
+    }
+    
+    .nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    
+    .nav li {
+      display: inline-block;
+    }
+    
+    .nav li a {
+      display: block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #333;
+    }
+    
+    .nav li a:hover {
+      background-color: #ccc;
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+    
+    .dropdown-content a {
+      color: #333;
+      padding: 10px 20px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .content {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Department of Computer Science</h1>
+  </div>
+  
+  <div class="nav">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li class="dropdown">
+        <a href="#">Faculty</a>
+        <div class="dropdown-content">
+          <a href="#">Professor John Doe</a>
+          <a href="#">Professor Jane Smith</a>
+          <a href="#">Professor Robert Johnson</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Courses</a>
+        <div class="dropdown-content">
+          <a href="#">Introduction to Computer Science</a>
+          <a href="#">Data Structures and Algorithms</a>
+          <a href="#">Web Development</a>
+        </div>
+      </li>
+      <li><a href="#">Activities</a></li>
+    </ul>
+  </div>
+  
+  <div class="content">
+    <h2>Welcome to the Department of Computer Science!</h2>
+    <p>The Department of Computer Science at DUUniversity is dedicated to providing high-quality education and research in the field of computer science. Our faculty members are experienced professionals with expertise in various areas of computer science.</p>
+    <p>We offer a wide range of courses that cover fundamental concepts as well as advanced topics in computer science. Our curriculum is designed to equip students with the knowledge and skills needed to succeed in the rapidly evolving technology industry.</p>
+    <p>Aside from academic pursuits, we encourage our students to participate in extracurricular activities and engage in projects and research initiatives. We believe in fostering a supportive and collaborative environment that encourages creativity and innovation.</p>
+    <p>Explore our website to learn more about our faculty, courses, and activities. If you have any questions, feel free to reach out to us. We look forward to welcoming you to our department!</p>
+  </div>
+</body>
+</html>
