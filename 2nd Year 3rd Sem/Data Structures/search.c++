@@ -202,34 +202,57 @@ void SLL::reverseNode()
 void SLL::mergeNode(SLL myList2)
 {
     Node *ptr1 = head;
-    Node *ptr2 = head;
-    Node *ptr3 = head;
+    Node *ptr2 = myList2.head;
+    Node *mergedList = nullptr;
+    Node *ptr3 = nullptr;
 
     while (ptr1 != nullptr && ptr2 != nullptr)
     {
+        Node *newNode = new Node();
+
         if (ptr1->data < ptr2->data)
         {
-            ptr3->next = ptr1;
+            newNode->data = ptr1->data;
             ptr1 = ptr1->next;
-            ptr3 = ptr3->next;
         }
         else
         {
-            ptr3->next = ptr2;
+            newNode->data = ptr2->data;
             ptr2 = ptr2->next;
-            ptr3 = ptr3->next;
-        }
-        if (ptr1 != nullptr)
-        {
-            ptr3->next = ptr2;
-        }
-        if (ptr2 != nullptr)
-        {
-            ptr3->next = ptr1;
         }
 
-        
+        if (mergedList == nullptr)
+        {
+            mergedList = ptr3 = newNode;
+        }
+        else
+        {
+            ptr3->next = newNode;
+            ptr3 = ptr3->next;
+        }
     }
+
+    while (ptr1 != nullptr)
+    {
+        Node *newNode = new Node();
+        newNode->data = ptr1->data;
+
+        ptr3->next = newNode;
+        ptr3 = ptr3->next;
+        ptr1 = ptr1->next;
+    }
+
+    while (ptr2 != nullptr)
+    {
+        Node *newNode = new Node();
+        newNode->data = ptr2->data;
+
+        ptr3->next = newNode;
+        ptr3 = ptr3->next;
+        ptr2 = ptr2->next;
+    }
+
+    head = mergedList;
 }
 
 void SLL::display()
@@ -254,9 +277,9 @@ void SLL::display()
 int main()
 {
     SLL myList, myList2;
-    myList2.insert_at_beg(45);
-    myList2.insert_at_beg(65);
     myList2.insert_at_beg(85);
+    myList2.insert_at_beg(65);
+    myList2.insert_at_beg(45);
     int choice, num, position;
 
     do
@@ -313,11 +336,11 @@ int main()
             cout << myList.lsearch(num) << endl;
             break;
         case 8:
-            cout << "Reversed SLL";
+            cout << "Reversed SLL"<<endl;
             myList.reverseNode();
             break;
         case 9:
-            cout << "Merged SLL";
+            cout << "Merged SLL"<<endl;
             myList.mergeNode(myList2);
             break;
         case 10:
