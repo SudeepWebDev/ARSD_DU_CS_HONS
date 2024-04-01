@@ -130,7 +130,7 @@ int partition(int arr[], int p, int r)
 {
     int x = arr[r];
     int i = p - 1;
-    for (int j = p; j < r; j++) 
+    for (int j = p; j < r; j++)
     {
         if (arr[j] <= x)
         {
@@ -151,7 +151,35 @@ void quickSort(int arr[], int p, int r)
         quickSort(arr, q + 1, r);
     }
 }
+void countSort(int arr[], int size)
+{
 
+    int output[size];
+    int max = arr[0];
+    for (int i = 1; i < size; i++)
+    {
+        if (arr[i] > max)
+            max = arr[i];
+    }
+    int count[max];
+    for (int i = 0; i <= max; ++i)
+        count[i] = 0;
+
+    for (int i = 0; i < size; i++)
+        count[arr[i]]++;
+
+    for (int i = 1; i <= max; i++)
+        count[i] += count[i - 1];
+
+    for (int i = size - 1; i >= 0; i--)
+    {
+        output[count[arr[i]] - 1] = arr[i];
+        count[arr[i]]--;
+    }
+
+    for (int i = 0; i < size; i++)
+        arr[i] = output[i];
+}
 void printArr(int arr[], int n)
 {
     for (int i = 0; i < n; i++)
@@ -199,8 +227,12 @@ int main()
     // minElement(arr, size);
     // printArr(arr, size);
 
-    quickSort(arr, 0, size - 1);
-    cout << "Array sorted by quick sort: ";
+    // quickSort(arr, 0, size - 1);
+    // cout << "Array sorted by quick sort: ";
+    // printArr(arr, size);
+
+    countSort(arr, size);
+    cout << "Array sorted by count sort: ";
     printArr(arr, size);
 
     return 0;
