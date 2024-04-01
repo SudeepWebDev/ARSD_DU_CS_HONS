@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 void merge(int arr[], int l, int m, int r)
@@ -151,34 +152,43 @@ void quickSort(int arr[], int p, int r)
         quickSort(arr, q + 1, r);
     }
 }
-void countSort(int arr[], int size)
+
+void countSort(int arr[], int size, int place, int max)
 {
 
     int output[size];
+    int count[max + 1];
+    for (int i = 0; i <= max; ++i)
+        count[i] = 0;
+    for (int i = 0; i < size; i++)
+        count[(arr[i] / place) % 10]++;
+    for (int i = 1; i <= max; i++)                                  
+        count[i] += count[i - 1];
+    for (int i = size - 1; i >= 0; i--)
+    {
+        output[count[(arr[i] / place) % 10] - 1] = arr[i];
+        count[(arr[i] / place) % 10]--;
+    }
+
+    for (int i = 0; i < size; i++)
+        arr[i] = output[i];
+}
+
+void radixSort(int arr[], int size)
+{
     int max = arr[0];
     for (int i = 1; i < size; i++)
     {
         if (arr[i] > max)
             max = arr[i];
     }
-    int count[max];
-    for (int i = 0; i <= max; ++i)
-        count[i] = 0;
-
-    for (int i = 0; i < size; i++)
-        count[arr[i]]++;
-
-    for (int i = 1; i <= max; i++)
-        count[i] += count[i - 1];
-
-    for (int i = size - 1; i >= 0; i--)
+    int maxDigit = to_string(max).length();
+    int place = 1;
+    for (int i = 0; i < maxDigit; i++)
     {
-        output[count[arr[i]] - 1] = arr[i];
-        count[arr[i]]--;
+        countSort(arr, size, place, max);
+        place *= 10;
     }
-
-    for (int i = 0; i < size; i++)
-        arr[i] = output[i];
 }
 void printArr(int arr[], int n)
 {
@@ -231,8 +241,12 @@ int main()
     // cout << "Array sorted by quick sort: ";
     // printArr(arr, size);
 
-    countSort(arr, size);
-    cout << "Array sorted by count sort: ";
+    // countSort(arr, size);
+    // cout << "Array sorted by count sort: ";
+    // printArr(arr, size);
+
+    radixSort(arr, size);
+    cout << "Array sorted by radix sort: ";
     printArr(arr, size);
 
     return 0;
