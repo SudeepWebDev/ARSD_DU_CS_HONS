@@ -1,0 +1,123 @@
+
+#include <iostream>
+#include <limits>
+
+class Graph
+{
+    int size;
+    int **adj_matrix;
+    char *vertex_data;
+
+public:
+    Graph(int size) : size(size)
+    {
+        adj_matrix = new int *[size];
+        for (int i = 0; i < size; ++i)
+        {
+            adj_matrix[i] = new int[size];
+            for (int j = 0; j < size; ++j)
+                adj_matrix[i][j] = 0;
+        }
+
+        vertex_data = new char[size];
+        for (int i = 0; i < size; ++i)
+        {
+            vertex_data[i] = ' ';
+        }
+    }
+
+    void add_edge(int u, int v, int weight)
+    {
+        if (u >= 0 && u < size && v >= 0 && v < size)
+        {
+            adj_matrix[u][v] = weight;
+            adj_matrix[v][u] = weight; // For undirected graph
+        }
+    }
+
+    void add_vertex_data(int vertex, char data)
+    {
+        if (vertex >= 0 && vertex < size)
+        {
+            vertex_data[vertex] = data;
+        }
+    }
+
+    void prims_algorithm()
+    {
+        bool *in_mst = new bool[size];
+        int *key_values = new int[size];
+        int *parents = new int[size];
+
+        for (int i = 0; i < size; ++i)
+        {
+            in_mst[i] = false;
+            key_values[i] = std::numeric_limits<int>::max();
+            parents[i] = -1;
+        }
+
+        key_values[0] = 0;
+
+        std::cout << "Edge \tWeight\n";
+        for (int i = 0; i < size; ++i)
+        {
+            int u = -1;
+
+            for (int j = 0; j < size; ++j)
+            {
+                if (!in_mst[j] && (u == -1 || key_values[j] < key_values[u]))
+                {
+                    u = j;
+                }
+            }
+
+            in_mst[u] = true;
+
+            if (parents[u] != -1)
+            {
+                std::cout << vertex_data[parents[u]] << "-" << vertex_data[u] << " \t" << adj_matrix[u][parents[u]] << "\n";
+            }
+
+            for (int v = 0; v < size; ++v)
+            {
+                if (adj_matrix[u][v] && adj_matrix[u][v] < key_values[v] && !in_mst[v])
+                {
+                    parents[v] = u;
+                    key_values[v] = adj_matrix[u][v];
+                }
+            }
+        }
+    }
+};
+int main()
+{
+    Graph g(8);
+
+    g.add_vertex_data(0, 'A');
+    g.add_vertex_data(1, 'B');
+    g.add_vertex_data(2, 'C');
+    g.add_vertex_data(3, 'D');
+    g.add_vertex_data(4, 'E');
+    g.add_vertex_data(5, 'F');
+    g.add_vertex_data(6, 'G');
+    g.add_vertex_data(7, 'H');
+
+    g.add_edge(0, 1, 4);
+    g.add_edge(0, 3, 3);
+    g.add_edge(1, 2, 3);
+    g.add_edge(1, 3, 5);
+    g.add_edge(1, 4, 6);
+    g.add_edge(2, 4, 4);
+    g.add_edge(2, 7, 2);
+    g.add_edge(3, 4, 7);
+    g.add_edge(3, 5, 4);
+    g.add_edge(4, 5, 5);
+    g.add_edge(4, 6, 3);
+    g.add_edge(5, 6, 7);
+    g.add_edge(6, 7, 5);
+
+    std::cout << "Prim's Algorithm MST:\n";
+    g.prims_algorithm();
+
+    return 0;
+}
