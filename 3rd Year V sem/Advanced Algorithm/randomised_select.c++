@@ -1,32 +1,34 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
-int partition(vector<int> &arr, int low, int high)
+int randomisedSelect(vector<int> &arr, int left, int right, int k)
 {
-    int pivot = arr[high], i = low - 1;
-    for (int j = low; j < high; j++)
+    if (left == right)
+        return arr[left];
+    srand(time(nullptr));
+    int pivot_index = left + rand() % (right - left + 1);
+    swap(arr[pivot_index], arr[right]);
+    int pivot = arr[right], i = left;
+    for (int j = left; j < right; j++)
         if (arr[j] < pivot)
-            swap(arr[++i], arr[j]);
-    swap(arr[i + 1], arr[high]);
-    return i + 1;
-}
+            swap(arr[i++], arr[j]);
+    swap(arr[i], arr[right]);
 
-int randomisedSelect(vector<int> &arr, int low, int high, int k)
-{
-    if (low == high)
-        return arr[low];
-    int pivotIndex = partition(arr, low, high);
-    if (k == pivotIndex)
+    if (k == i)
         return arr[k];
-    return k < pivotIndex ? randomisedSelect(arr, low, pivotIndex - 1, k) : randomisedSelect(arr, pivotIndex + 1, high, k);
+    return k < i ? randomisedSelect(arr, left, i - 1, k) : randomisedSelect(arr, i + 1, right, k);
 }
 
 int main()
 {
     vector<int> arr = {5, 2, 9, 1, 7, 6, 3};
-    int k = 3;
+    int k = 2;
     cout << "The " << k << "th smallest element is: " << randomisedSelect(arr, 0, arr.size() - 1, k - 1) << endl;
+    for (int num : arr)
+        cout << num << " ";
+    cout << endl;
     return 0;
 }
