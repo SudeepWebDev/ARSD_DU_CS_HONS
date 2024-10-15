@@ -138,43 +138,31 @@ FiniteAutomaton concatenateFA(const FiniteAutomaton& fa1, const FiniteAutomaton&
     return resultFA;
 }
 
-// Example FA1
+// Example FA1: Automaton for strings starting with 'a'
 FiniteAutomaton createFA1() {
     FiniteAutomaton fa;
-    const int q0 = 0, q1 = 1, q2 = 2, q3 = 3;
+    const int q0 = 0, q1 = 1, q2 = 2;
 
     fa.setInitialState(q0);
-    fa.addTransition(q0, '0', q0);
-    fa.addTransition(q0, '1', q1);
-    fa.addTransition(q1, '0', q0);
-    fa.addTransition(q1, '1', q2);
-    fa.addTransition(q2, '0', q0);
-    fa.addTransition(q2, '1', q3);
-    fa.addTransition(q3, '0', q3);
-    fa.addTransition(q3, '1', q3);
-    fa.addFinalState(q3);
+    fa.addTransition(q0, 'a', q1);
+    fa.addTransition(q1, 'a', q1);
+    fa.addTransition(q1, 'b', q1);
+    fa.addFinalState(q1);
 
     return fa;
 }
 
-// Example FA2
+// Example FA2: Automaton for strings ending with 'b'
 FiniteAutomaton createFA2() {
     FiniteAutomaton fa;
-    const int q0 = 0, q1 = 1, q2 = 2, q3 = 3, q4 = 4;
+    const int q0 = 0, q1 = 1;
 
     fa.setInitialState(q0);
-    fa.addTransition(q0, '0', q0);
-    fa.addTransition(q0, '1', q1);
-    fa.addTransition(q1, '0', q1);
-    fa.addTransition(q1, '1', q2);
-    fa.addTransition(q2, '0', q2);
-    fa.addTransition(q2, '1', q3);
-    fa.addTransition(q3, '0', q3);
-    fa.addTransition(q3, '1', q4);
-    fa.addTransition(q4, '0', q4);
-    fa.addTransition(q4, '1', q4);
-    fa.addFinalState(q2);
-    fa.addFinalState(q3);
+    fa.addTransition(q0, 'a', q0);
+    fa.addTransition(q0, 'b', q1);
+    fa.addTransition(q1, 'a', q0);
+    fa.addTransition(q1, 'b', q1);
+    fa.addFinalState(q1);
 
     return fa;
 }
