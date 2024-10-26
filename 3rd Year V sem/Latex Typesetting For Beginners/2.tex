@@ -1,0 +1,91 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc} % Encoding
+\usepackage{enumitem} % For compact lists and custom list settings
+
+% Custom spacing for lists
+\setlist[itemize]{itemsep=0.5em, topsep=0.5em}
+\setlist[enumerate]{itemsep=0.5em, topsep=0.5em}
+\setlist[description]{labelsep=0.5em}
+
+\title{\textbf{Demonstration of Various List Styles in LaTeX}}
+\author{Sudeep Kumar Singh}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Bulleted Lists}
+
+\begin{itemize}
+    \item Item 1 in a standard bullet list.
+    \item Item 2 with a sublist:
+    \begin{itemize}
+        \item Sub-item 1
+        \item Sub-item 2
+    \end{itemize}
+    \item Item 3
+\end{itemize}
+
+% Compact bullet list
+\textbf{Compact Bullet List:}
+\begin{itemize}[noitemsep, topsep=0pt] % Reduces spacing for compactness
+    \item Compact Item 1
+    \item Compact Item 2
+\end{itemize}
+
+\section*{Numbered Lists}
+
+\begin{enumerate}
+    \item First item
+    \item Second item
+    \begin{enumerate}
+        \item Sub-item 1
+        \item Sub-item 2
+    \end{enumerate}
+    \item Third item
+\end{enumerate}
+
+% Resuming numbering
+\textbf{Numbered List with Resuming:}
+\begin{enumerate}
+    \item Fourth item
+    \item Fifth item
+\end{enumerate}
+
+% Customized compact numbered list
+\textbf{Compact Numbered List:}
+\begin{enumerate}[noitemsep, topsep=0pt, label=\arabic*)] % Custom label for numbering
+    \item Compact item 1
+    \item Compact item 2
+\end{enumerate}
+
+\section*{Definition Lists}
+
+\begin{description}
+    \item[First Term] The definition of the first term goes here.
+    \item[Second Term] Definition for the second term.
+\end{description}
+
+% Customized definition list with compact spacing
+\textbf{Compact Definition List:}
+\begin{description}[noitemsep, topsep=0pt, labelwidth=3cm]
+    \item[Compact Term 1] Definition with adjusted spacing.
+    \item[Compact Term 2] Another definition with less space.
+\end{description}
+
+\section*{List with Interrupted Numbering}
+
+\begin{enumerate}
+    \item First part of list
+    \item Second part of list
+\end{enumerate}
+
+\noindent Some intervening text here.
+
+\begin{enumerate}[resume] % Resuming numbering after interruption
+    \item Continued list item 3
+    \item Continued list item 4
+\end{enumerate}
+
+\end{document}
