@@ -1,0 +1,52 @@
+\documentclass[12pt]{article} % Document class with font size
+
+% Setting up the title, author, and date
+\title{Introduction to LaTeX}
+\author{Sudeep Kumar Singh}
+\date{\today}
+
+% Adjusting page dimensions and margins
+\usepackage[a4paper, total={6in, 8in}, left=1in, right=1in, top=1in, bottom=1in]{geometry}
+
+% Adjusting line spacing
+\usepackage{setspace}
+\doublespacing % for double spacing
+
+% Adding a footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[R]{\thepage} % Right footer page number
+
+% Additional packages for content demonstration
+\usepackage{lipsum} % Package to generate dummy text
+
+\begin{document}
+
+% Display title, author, and date
+\maketitle
+
+% Address
+\begin{center}
+    Atma Ram Sanatan Dharma College, New Delhi, India
+\end{center}
+
+\section*{Abstract}
+LaTeX is a powerful typesetting tool commonly used in academia for creating professional-looking documents. Its functionalities include title formatting, managing page dimensions, adjusting margins, line spacing, and adding footnotes. This document provides a basic template illustrating these features.
+
+\section{Introduction to Page Dimensions and Margins}
+One of LaTeX's strengths is its ability to control page layout settings precisely. The \texttt{geometry} package is used here to set the page size to A4 with custom margins of 1 inch on each side. You can modify the dimensions to match different document standards, ensuring versatility across various academic formats.
+
+\section{Using Footnotes in LaTeX}
+LaTeX also allows for footnotes, which are added using the \texttt{\textbackslash footnote\{\}} command. For example, a footnote can provide extra information without disrupting the document's flow\footnote{This is an example footnote in LaTeX.}. Footnotes are essential for referencing additional details or citations in academic documents.
+
+\section{Adjusting Line Spacing}
+The \texttt{setspace} package allows you to set line spacing for the document. Here, we've applied \texttt{\textbackslash doublespacing} for enhanced readability. Other options include \texttt{\textbackslash singlespacing} and \texttt{\textbackslash onehalfspacing}.
+
+\section{Orientation and Page Numbering}
+By default, LaTeX orients pages in portrait mode. However, you can change to landscape mode if needed using the \texttt{pdflscape} or \texttt{lscape} package. Page numbering is automatically handled by LaTeX, but customization, like the right-aligned footer page number, is also possible.
+
+\section{Conclusion}
+This document template demonstrates the versatility and utility of LaTeX in formatting documents. With easy-to-use packages and flexible options, LaTeX is ideal for creating clean, structured, and professional documents.
+
+\end{document}
