@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+
+% Packages for table formatting
+\usepackage{array}      % Advanced table formatting
+\usepackage{tabularx}   % Auto-fit table columns
+\usepackage{multirow}   % Span rows in tables
+\usepackage{caption}    % Customize captions
+
+% Define table column widths using tabularx
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+\title{Creating Advanced Tables in LaTeX}
+\author{Sudeep Kumar Singh}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Basic Table with Caption}
+Below is a simple table with a caption. The `\texttt{tabular}` environment is used to create basic tables.
+
+\begin{table}[h!]
+    \centering
+    \caption{Basic LaTeX Table with Column Titles}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{ID} & \textbf{Name} & \textbf{Grade} \\
+        \hline
+        1 & Alice & A \\
+        \hline
+        2 & Bob & B \\
+        \hline
+        3 & Carol & A+ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Table with Column and Row Spanning}
+This table demonstrates column and row spanning using `\texttt{multicolumn}` and `\texttt{multirow}`.
+
+\begin{table}[h!]
+    \centering
+    \caption{Table with Column and Row Spanning}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Subject} & \multicolumn{3}{|c|}{\textbf{Grades}} \\
+        \hline
+        \textbf{Student} & \textbf{Math} & \textbf{Science} & \textbf{English} \\
+        \hline
+        Alice & A & A+ & B \\
+        \hline
+        \multirow{2}{*}{Bob} & B & \multicolumn{2}{|c|}{A (Combined Science \& English)} \\
+        \cline{2-4}
+         & A+ & B+ & A- \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Auto-Fitting Columns using \texttt{tabularx} Package}
+Using the `\texttt{tabularx}` package, you can create tables with columns that automatically adjust to fit the page width. The \texttt{X} column type in `tabularx` allows for text wrapping.
+
+\begin{table}[h!]
+    \centering
+    \caption{Auto-Fit Columns with Text Wrapping}
+    \begin{tabularx}{\textwidth}{|c|Y|Y|Y|}
+        \hline
+        \textbf{ID} & \textbf{Description} & \textbf{Comments} & \textbf{Date} \\
+        \hline
+        1 & This entry contains a longer description that will auto-wrap. & Initial assessment complete. & 2024-10-27 \\
+        \hline
+        2 & Brief description. & Reviewed and approved. & 2024-10-28 \\
+        \hline
+        3 & Another entry with a longer description that spans multiple lines to demonstrate text wrapping. & Pending approval. & 2024-10-29 \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\section{Conclusion}
+This document demonstrates table creation in LaTeX with captions, column and row spanning, and auto-fitting columns. By using packages like `\texttt{multirow}` and `\texttt{tabularx}`, tables can be formatted for complex layouts and adjustable widths.
+
+\end{document}
