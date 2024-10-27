@@ -1,0 +1,72 @@
+\documentclass[12pt]{report}
+
+% Packages for customization
+\usepackage{tocloft}     % Customizing the table of contents, list of figures, and list of tables
+\usepackage{makeidx}     % Creating an index
+\usepackage{graphicx}    % Including images (for figures)
+
+% Index initialization
+\makeindex
+
+% Customizing the table of contents and lists
+\renewcommand{\cftsecfont}{\bfseries}        % Bold section titles in TOC
+\renewcommand{\cftsecpagefont}{\bfseries}    % Bold page numbers in TOC
+\renewcommand{\cftfigfont}{\itshape}         % Italicize figure entries in list
+\renewcommand{\cfttabfont}{\itshape}         % Italicize table entries in list
+\renewcommand{\cftfigpagefont}{\itshape}     % Italicize page numbers in figure list
+\renewcommand{\cfttabpagefont}{\itshape}     % Italicize page numbers in table list
+
+\title{Advanced Document with TOC, Index, and Lists}
+\author{Sudeep Kumar Singh}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents % Generate Table of Contents
+\listoffigures   % Generate List of Figures
+\listoftables    % Generate List of Tables
+
+\chapter{Introduction}
+LaTeX is a robust typesetting system ideal for producing structured documents. This document demonstrates customizations for the Table of Contents (TOC), lists of figures and tables, and generating an index.
+
+% Adding keywords to index
+LaTeX\index{LaTeX} is widely used in academia\index{academia}. It supports a range of features for document preparation, including index creation\index{index} and customization of TOC\index{Table of Contents} entries.
+
+\chapter{Customizing Lists}
+The `tocloft` package allows modifying the appearance of TOC, list of figures\index{list of figures}, and list of tables\index{list of tables} entries. We can adjust font styles and spacing for a more polished look.
+
+\section{Adding Figures and Tables}
+Below is a sample figure and table to illustrate list customizations.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{example-image}
+    \caption{Sample Figure}
+    \index{Sample Figure}
+\end{figure}
+
+\begin{table}[h!]
+    \centering
+    \caption{Sample Table}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Item} & \textbf{Description} \\
+        \hline
+        1 & Example entry \\
+        2 & Another example entry \\
+        \hline
+    \end{tabular}
+    \index{Sample Table}
+\end{table}
+
+\chapter{Creating an Index}
+An index helps readers find keywords and relevant sections quickly. Using the `makeidx` package, you can add entries by inserting `\texttt{\textbackslash index\{keyword\}}` commands throughout the document.
+
+\chapter{Conclusion}
+This document illustrates how to use LaTeX for customizing TOC, lists, and index creation. By applying the `tocloft` and `makeidx` packages, documents can be tailored for both style and functionality, ensuring they meet specific academic or professional standards.
+
+\printindex % Generate the Index
+
+\end{document}
