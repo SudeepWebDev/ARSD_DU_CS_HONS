@@ -149,7 +149,7 @@ void runFA4()
     fa.addTransition(q6, 'a', q6);
     fa.addTransition(q6, 'b', q7);
     fa.addTransition(q7, 'a', q6);
-    fa.addTransition(q7, 'b', q7);
+    fa.addTransition(q7, 'b', q5);
     fa.addTransition(q8, 'a', q9);
     fa.addTransition(q8, 'b', q12);
     fa.addTransition(q9, 'a', q9);
