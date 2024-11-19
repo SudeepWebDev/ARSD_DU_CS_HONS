@@ -1,0 +1,105 @@
+% Appendix
+\clearpage
+\thispagestyle{empty} 
+\begin{center}
+    \vspace*{\fill} 
+    \Huge \textbf{Appendix} \\
+    \vspace*{\fill}
+\end{center}
+\clearpage
+
+\appendix
+\addcontentsline{toc}{chapter}{Appendix} 
+\fancyhead[]{}
+\fancyhead[LO,RE]{\textbf{SHA-256 Hash Function Algorithm}}
+\fancyhead[LE,RO]{\thepage}
+
+\renewcommand{\thesection}{\Alph{section}}
+\section*{\centering Appendix A: SHA-256 Hash Function Algorithm}
+\addcontentsline{toc}{section}{Appendix A: SHA-256 Hash Function Algorithm}
+
+The SHA-256 algorithm is a cryptographic hash function that produces a fixed-size 256-bit hash value from input data. It is used widely for data integrity verification and digital signatures. Below is the description of the SHA-256 algorithm and its mathematical representation.
+
+\begin{algorithm}
+\caption{SHA-256 Hash Function}
+\begin{algorithmic}
+\State \textbf{Input:} A message \( M \) of any length
+\State \textbf{Output:} A fixed-length hash value \( H \) (256 bits)
+\State Initialize hash values:
+\State \( h_0 = \text{0x6a09e667f3bcc908} \)
+\State \( h_1 = \text{0xbb67ae85a4a1f7e9} \)
+\State \( h_2 = \text{0x3c6ef372fe94f82b} \)
+\State \( h_3 = \text{0xa54ff53a5f1d36f1} \)
+\State \( h_4 = \text{0x510e527fade682d1} \)
+\State \( h_5 = \text{0x9b05688c2b3e6c1f} \)
+\State \( h_6 = \text{0x1f83d9abfb41bd6b} \)
+\State \( h_7 = \text{0x5be0cd19137e2179} \)
+\State \textbf{Padding:} Add padding to the message \( M \) to make its length congruent to 448 mod 512.
+\State Append the length of \( M \) (in bits) as a 64-bit integer.
+\State \textbf{Processing blocks:} Process the padded message in 512-bit blocks.
+\For{each block \( M_i \) in the padded message}
+    \State Break \( M_i \) into 16 32-bit words \( W_0, W_1, ..., W_{15} \)
+    \For{j = 16 to 63}
+        \State \( W_j = \sigma_1(W_{j-2}) + W_{j-7} + \sigma_0(W_{j-15}) + W_{j-16} \)
+    \EndFor
+    \State Initialize working variables:
+    \State \( a = h_0 \), \( b = h_1 \), \( c = h_2 \), \( d = h_3 \), \( e = h_4 \), \( f = h_5 \), \( g = h_6 \), \( h = h_7 \)
+    \For{j = 0 to 63}
+        \State Compute \( T_1 = h + \Sigma_1(e) + Ch(e,f,g) + K_j + W_j \)
+        \State \( T_2 = \Sigma_0(a) + Maj(a,b,c) \)
+        \State Update working variables:
+        \State \( h = g \), \( g = f \), \( f = e \), \( e = d + T_1 \), \( d = c \), \( c = b \), \( b = a \), \( a = T_1 + T_2 \)
+    \EndFor
+    \State Update hash values:
+    \State \( h_0 = h_0 + a \), \( h_1 = h_1 + b \), \( h_2 = h_2 + c \), \( h_3 = h_3 + d \), 
+    \State \( h_4 = h_4 + e \), \( h_5 = h_5 + f \), \( h_6 = h_6 + g \), \( h_7 = h_7 + h \)
+\EndFor
+\State \textbf{Output:} The final hash value is \( H = h_0 \parallel h_1 \parallel h_2 \parallel h_3 \parallel h_4 \parallel h_5 \parallel h_6 \parallel h_7 \).
+\end{algorithmic}
+\end{algorithm}
+
+% Start Appendix B
+\clearpage
+\fancyhead[]{}
+\fancyhead[LO,RE]{\textbf{Mathematical Equation Representation of SHA-256}}
+\fancyhead[LE,RO]{\thepage}
+\section*{\centering Appendix B: Mathematical Equation Representation of SHA-256}
+\addcontentsline{toc}{section}{Appendix B: Mathematical Equation Representation of SHA-256}
+
+The SHA-256 function involves several mathematical operations, including bitwise operations, modular additions, and logical functions. The core operations are defined as:
+
+\[
+T_1 = h + \Sigma_1(e) + Ch(e,f,g) + K_j + W_j
+\]
+
+\[
+T_2 = \Sigma_0(a) + Maj(a,b,c)
+\]
+
+Where:
+- \( \Sigma_1(x) \) and \( \Sigma_0(x) \) are the functions that represent the bitwise rotations and shifts.
+- \( Ch(x, y, z) \) is the "choose" function, which selects between values based on certain conditions.
+- \( Maj(x, y, z) \) is the "majority" function, which returns the majority bit from the three input bits.
+
+Finally, the 256-bit output hash value is obtained by concatenating the hash values after processing all blocks:
+
+\[
+H = h_0 \parallel h_1 \parallel h_2 \parallel h_3 \parallel h_4 \parallel h_5 \parallel h_6 \parallel h_7
+\]
+
+% Start Appendix C
+\clearpage
+\fancyhead[]{}
+\fancyhead[LO,RE]{\textbf{Output of the Hash Function}}
+\fancyhead[LE,RO]{\thepage}
+\section*{\centering Appendix C: Output of the Hash Function}
+\addcontentsline{toc}{section}{Appendix C: Output of the Hash Function}
+
+The output of a hash function like SHA-256 is a 256-bit (32-byte) fixed-length value, irrespective of the input size. This means that even if the input data is extremely large, the output will always be a fixed 256-bit hash.
+
+For example, applying SHA-256 to the string "Hello, World!" produces the following hash output:
+
+\[
+\text{SHA-256("Hello, World!")} = \text{dffd6021bb2bd7a3643b4d5c891d94b6f97c2bc0c5e9b8482f5a03b4777e0e8f}
+\]
+\clearpage
