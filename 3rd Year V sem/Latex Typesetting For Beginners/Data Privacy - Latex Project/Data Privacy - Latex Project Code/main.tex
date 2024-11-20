@@ -1,0 +1,108 @@
+\documentclass[10pt,a4paper,twoside, openany]{book}
+
+% Packages
+
+\usepackage{tocbibind}
+\usepackage{amsmath}
+\usepackage{algorithm} % For algorithm environment
+\usepackage{amsthm}
+\usepackage{imakeidx}
+\usepackage{algpseudocode}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{fancyhdr} % For custom headers/footers
+\usepackage{geometry} % For page layout adjustments
+\geometry{margin=1in}
+
+% Additional Packages for Front Page Layout and Background
+\usepackage{tikz}
+\usepackage{background}
+\usetikzlibrary{calc}
+\usepackage{hyperref}
+\hypersetup{
+    hidelinks
+}
+% Configure fancyhdr
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage} % Page numbers: left on even, right on odd pages
+\fancyhead[RE]{\leftmark}   % Chapter name on even pages (right header)
+\fancyhead[LO]{\rightmark}  % Section name on odd pages (left header)
+\makeindex[columns=3, title=Index]
+
+% Title, Author, and Date
+\title{Data Privacy Attacks,\\ Cryptography and Data Protection}
+\author{Sudeep Kumar Singh, Shubham Kushwaha, Ankit Sarawag}
+\date{\today}
+
+\begin{document}
+
+% Set custom margin and background for front page
+\newgeometry{margin=1.5cm, top=2cm, bottom=2cm}
+\backgroundsetup{angle = 0, scale = 1, vshift = -2ex,
+  contents = {\tikz[overlay, remember picture]
+    \draw [rounded corners = 20pt, line width = 1pt,
+           color = blue, fill = yellow!20, double = blue!10]
+           ($(current page.north west)+(1cm,-1cm)$)
+           rectangle ($(current page.south east)+(-1,1)$);}}
+
+\pagestyle{empty} 
+\pagenumbering{roman}
+
+% Title Page
+\include{frontPage}  
+% Reset everything after front page
+\newgeometry{margin=1in} % Restore default margin
+\backgroundsetup{contents={}} % Clear background setup
+\include{Front_Back_Page/front}
+
+% Proceed with document content
+\maketitle
+\include{preface_ack_auth}
+
+\clearpage
+
+\tableofcontents
+ \clearpage
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+ \clearpage
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+% Reset page numbering for Chapter 1
+\cleardoublepage
+\pagenumbering{arabic} 
+\setcounter{page}{1}
+\pagestyle{fancy} 
+
+% Include Chapters
+\include{Data_Privacy_and_Cryptography/security_attacks}
+\include{Data_Privacy_and_Cryptography/security_services}
+\include{Data_Privacy_and_Cryptography/security_mechanisms}
+\include{Data_Privacy_and_Cryptography/cryptographic_algo}
+\include{Data_Privacy_and_Cryptography/symmetric_algo}
+\include{Data_Privacy_and_Cryptography/asymmetric_algo}
+\include{Data_Privacy_and_Cryptography/crypto_hash_function}
+\include{Data_Privacy_and_Cryptography/practical_consideration}
+\include{Data_Privacy_and_Cryptography/pki}
+\include{Appendix/appendix}
+\include{bibliography}
+% Index
+\clearpage
+\thispagestyle{empty} 
+\begin{center}
+    \vspace*{\fill} 
+    \Huge \textbf{Index} \\
+    \vspace*{\fill}
+\end{center}
+\clearpage
+\addcontentsline{toc}{chapter}{Index}
+\printindex
+\pagestyle{empty}
+
+% Back Page
+\include{Front_Back_Page/back}
+
+\end{document}
