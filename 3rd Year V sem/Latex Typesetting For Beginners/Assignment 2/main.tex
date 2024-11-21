@@ -1,0 +1,87 @@
+\documentclass[10pt,a4paper]{report}
+
+% Packages
+\usepackage{tocbibind} % Adds TOC, bibliography to TOC
+\usepackage{amsmath}   % Math environments
+\usepackage{amsthm}    % Theorems
+\usepackage{imakeidx}  % For creating index
+\usepackage{graphicx}  % For image inclusion
+\usepackage{subcaption}
+\usepackage{geometry}  % Adjusts page margins
+\usepackage{fancyhdr}  % Custom headers/footers
+\usepackage{hyperref}  % For clickable links
+\usepackage{multicol}
+\usepackage{multirow}
+\geometry{margin=1in}  % 1-inch margins
+\hypersetup{hidelinks} % No visible borders for links
+\usepackage{tikz}
+\usepackage{background}
+\usetikzlibrary{calc}
+
+\makeindex[columns=2, title=Index] % Generate a 2-column index
+
+% Title, Author, Date
+\title{LaTeX Typesetting for Beginners}
+\author{Sudeep Kumar Singh}
+\date{\today}
+
+% Configure fancy headers
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}  % Chapter title on the left
+\fancyhead[R]{\thepage}   % Page number on the right
+
+% Reset section numbering to Roman
+\renewcommand{\thesection}{\roman{section}}
+
+\begin{document}
+\newgeometry{margin=1.5cm, top=2cm, bottom=2cm}
+\backgroundsetup{angle = 0, scale = 1, vshift = -2ex,
+  contents = {\tikz[overlay, remember picture]
+    \draw [rounded corners = 20pt, line width = 1pt,
+           color = blue, fill = yellow!20, double = blue!10]
+           ($(current page.north west)+(1cm,-1cm)$)
+           rectangle ($(current page.south east)+(-1,1)$);}}
+\pagestyle{empty} 
+\pagenumbering{roman}
+
+% Title Page
+\include{frontPage}  
+% Reset everything after front page
+\newgeometry{margin=1in} % Restore default margin
+\backgroundsetup{contents={}} % Clear background setup
+% Title Page
+\maketitle
+\clearpage
+
+% Table of Contents
+% \tableofcontents
+\clearpage
+
+% Include Q1 (modular chapter)
+\include{Q1} 
+\setcounter{section}{0}
+\include{Q2} 
+\setcounter{section}{0}
+\include{Q3} 
+\setcounter{section}{0}
+\include{Q4} 
+\setcounter{section}{0}
+\include{Q5} 
+\setcounter{section}{0}
+\include{Q6} 
+
+% Index
+\clearpage
+\thispagestyle{empty} 
+\begin{center}
+    \vspace*{\fill} 
+    \Huge \textbf{Index} \\
+    \vspace*{\fill}
+\end{center}
+\clearpage
+\addcontentsline{toc}{chapter}{Index}
+\printindex
+\pagestyle{empty}
+
+\end{document}

@@ -1,0 +1,59 @@
+\section*{Q6: Explanation of the following commands}
+
+\begin{enumerate}
+    \item[(a)] \textbf{\textbackslash frontmatter}
+    \begin{itemize}
+        \item \textbf{Purpose}: The \textbackslash frontmatter command is used to begin the front matter of a document. This includes the title page, abstract, table of contents, etc. It alters the numbering style to lowercase Roman numerals (i, ii, iii, ...).
+        \item \textbf{Function}: This command resets the page number to Roman numerals and formats chapters/sections with Roman numeral numbering.
+    \end{itemize}
+    \textbf{Example}:
+    \begin{verbatim}
+    \frontmatter
+    \title{My Book Title}
+    \author{Author Name}
+    \maketitle
+    \end{verbatim}
+
+    \item[(b)] \textbf{\textbackslash mainmatter}
+    \begin{itemize}
+        \item \textbf{Purpose}: The \textbackslash mainmatter command starts the main content of a document. It resets page numbering to Arabic numerals (1, 2, 3, ...) and typically begins the chapters of the book.
+        \item \textbf{Function}: This command changes the document from Roman numerals to Arabic numerals and starts chapter/section numbering from 1.
+    \end{itemize}
+    \textbf{Example}:
+    \begin{verbatim}
+    \mainmatter
+    \chapter{Introduction}
+    \end{verbatim}
+
+    \item[(c)] \textbf{\textbackslash backmatter}
+    \begin{itemize}
+        \item \textbf{Purpose}: The \textbackslash backmatter command signals the start of the back matter in the document. This typically includes references, appendices, indices, etc.
+        \item \textbf{Function}: It continues chapter/section numbering in Arabic numerals but marks the end of the main content, focusing on supplementary material.
+    \end{itemize}
+    \textbf{Example}:
+    \begin{verbatim}
+    \backmatter
+    \chapter{Appendix}
+    \bibliography{references}
+    \end{verbatim}
+
+    \item[(d)] \textbf{\textbackslash include}
+    \begin{itemize}
+        \item \textbf{Purpose}: The \textbackslash include command is used to insert an entire LaTeX file (typically a chapter or section) into the main document.
+        \item \textbf{Function}: This command allows for modular document design, where separate `.tex` files are combined to create the full document.
+    \end{itemize}
+    \textbf{Example}:
+    \begin{verbatim}
+    \include{chapter1}  % Includes content from chapter1.tex
+    \end{verbatim}
+
+    \item[(e)] \textbf{\textbackslash includeonly}
+    \begin{itemize}
+        \item \textbf{Purpose}: The \textbackslash includeonly command is used to specify which files to include in the compilation process, while skipping others. It is useful when working with large documents.
+        \item \textbf{Function}: Only the files mentioned in the \textbackslash includeonly command will be compiled, speeding up the compilation process by excluding other files.
+    \end{itemize}
+    \textbf{Example}:
+    \begin{verbatim}
+    \includeonly{chapter1, chapter3}  % Only includes chapter1.tex and chapter3.tex
+    \end{verbatim}
+\end{enumerate}

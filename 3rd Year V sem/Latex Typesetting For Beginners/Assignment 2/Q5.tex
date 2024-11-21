@@ -1,0 +1,35 @@
+\section*{Question 5. Write the Syntax in Latex to Produce the Subplot}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/arsd_logo.png} 
+        \subcaption{ARSD Logo}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/du_logo.png}  
+        \subcaption{DU Logo}
+    \end{minipage}
+    \caption{ARSD and DU Logos}
+\end{figure}
+
+\begin{verbatim}
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/arsd_logo.png} 
+        \subcaption{ARSD Logo}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/du_logo.png}  
+        \subcaption{DU Logo}
+    \end{minipage}
+    \caption{ARSD and DU Logos}
+\end{figure}
+\end{verbatim}
+
+

@@ -1,0 +1,84 @@
+\section*{Question 4}
+
+\begin{enumerate}
+    \item[(i)] Write the command to produce the following table:
+
+    \begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \multicolumn{4}{|c|}{\textbf{List of Topper Students}} \\
+    \cline{2-4}
+    \hline
+    \textbf{Course} & \textbf{Student Name} & \textbf{Position} & \textbf{Percentage} \\
+    \hline
+    \multirow{4}{*}{\textbf{B.Sc (H) Maths}} & A & First & 99 \\
+    & B & Second & 98 \\
+    & C & Third & 97.5 \\
+    & D & Fourth & 97 \\
+    \hline
+    \end{tabular}
+    \caption{List of Topper Students}
+    \end{table}
+
+    \textbf{LaTeX Code:}
+    \begin{verbatim}
+    \begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \multicolumn{4}{|c|}{\textbf{List of Topper Students}} \\
+    \cline{2-4}
+    & \textbf{Course} & \textbf{Student Name} & \textbf{Position} & \textbf{Percentage} \\
+    \hline
+    \multirow{4}{*}{\textbf{B.Sc (H) Maths}} & A & First & 99 \\
+    & B & Second & 98 \\
+    & C & Third & 97.5 \\
+    & D & Fourth & 97 \\
+    \hline
+    \end{tabular}
+    \caption{List of Topper Students}
+    \end{table}
+    \end{verbatim}
+
+    \item[(ii)] Write the command for the following table:
+
+    \begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \multirow{2}{*}{} & \multirow{2}{*}{} & \multicolumn{4}{c|}{\textbf{No. of Students}} & \multirow{2}{*}{\textbf{Total}} \\
+    \cline{3-6}
+    & & \textbf{B.Sc (H)} & \textbf{B.Sc (P)} & \textbf{B.A. (H)} & \textbf{B.A. (P)} & \\
+    \hline
+    \multirow{2}{*}{\textbf{Class}} & II & 15 & 17 & 18 & 18 & 64 \\
+    & III & 10 & 10 & 5 & 10 & 40 \\
+    \hline
+    \multicolumn{2}{|c|}{\textbf{Total}} & 25 & 27 & 28 & 28 & 109 \\
+    \hline
+    \end{tabular}
+    \caption{No. of Students in Different Courses}
+    \end{table}
+
+    \textbf{LaTeX Code:}
+    \begin{verbatim}
+    \begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \multirow{2}{*}{} & \multirow{2}{*}{} & \multicolumn{4}{c|}{\textbf{No. of Students}} & \multirow{2}{*}{\textbf{Total}} \\
+    \cline{3-6}
+    & & \textbf{B.Sc (H)} & \textbf{B.Sc (P)} & \textbf{B.A. (H)} & \textbf{B.A. (P)} & \\
+    \hline
+    \multirow{2}{*}{\textbf{Class}} & II & 15 & 17 & 18 & 18 & 64 \\
+    & III & 10 & 10 & 5 & 10 & 40 \\
+    \hline
+    \multicolumn{2}{|c|}{\textbf{Total}} & 25 & 27 & 28 & 28 & 109 \\
+    \hline
+    \end{tabular}
+    \caption{No. of Students in Different Courses}
+    \end{table}
+    \end{verbatim}
+
+\end{enumerate}
+
