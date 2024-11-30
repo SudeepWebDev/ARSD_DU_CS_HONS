@@ -1,0 +1,80 @@
+/* Bisection Method in Maxima */
+
+/* Define the function for the root */
+f(x) := x^3 - x - 2;
+
+/* Bisection Method */
+bisection(f, a, b, tol) := block(
+    [c],
+    if f(a) * f(b) > 0 then error("f(a) and f(b) must have opposite signs"),
+    while abs(b - a) > tol do (
+        c: (a + b) / 2,
+        print("a: ", a, " b: ", b, " c: ", c, " f(c): ", f(c)),
+        if f(c) = 0 then return(c),
+        if f(a) * f(c) < 0 then b: c else a: c
+    ),
+    return((a + b) / 2)
+);
+
+/* Example Usage */
+root: bisection(f, 1, 2, 1e-6);
+print("Root: ", root);
+
+/* Define the function for which we want to find the root */
+f(x) := x^3 - x - 2;
+
+/* Secant Method */
+secant(f, x0, x1, tol) := block(
+    [x2],
+    while abs(x1 - x0) > tol do (
+        x2: x1 - f(x1) * (x1 - x0) / (f(x1) - f(x0)),
+        print("x0: ", x0, " x1: ", x1, " x2: ", x2, " f(x2): ", f(x2)),
+        x0: x1,
+        x1: x2
+    ),
+    return(x1)
+);
+
+/* Example Usage */
+root: secant(f, 1, 2, 1e-6);
+print("Root: ", root);
+
+/* Define the function for which we want to find the root */
+f(x) := x^3 - x - 2;
+
+/* Regula Falsi Method */
+regula_falsi(f, a, b, tol) := block(
+    [c],
+    if f(a) * f(b) > 0 then error("f(a) and f(b) must have opposite signs"),
+    while abs(b - a) > tol do (
+        c: a - f(a) * (b - a) / (f(b) - f(a)), /* Compute the false position */
+        print("a: ", a, " b: ", b, " c: ", c, " f(c): ", f(c)),
+        if f(c) = 0 then return(c), /* Exact root found */
+        if f(a) * f(c) < 0 then b: c else a: c /* Narrow the interval */
+    ),
+    return(c)
+);
+
+/* Example Usage */
+root: regula_falsi(f, 1, 2, 1e-6);
+print("Root: ", root);
+
+/* Define the function and its derivative */
+f(x) := x^3 - x - 2;
+f_prime(x) := 3*x^2 - 1;
+
+/* Newton-Raphson Method */
+newton_raphson(f, f_prime, x0, tol) := block(
+    [x1],
+    x1: x0 - f(x0) / f_prime(x0), /* Initial guess */
+    while abs(f(x1)) > tol do (
+        print("x0: ", x0, " x1: ", x1, " f(x1): ", f(x1)),
+        x0: x1,
+        x1: x0 - f(x0) / f_prime(x0) /* Update using Newton-Raphson formula */
+    ),
+    return(x1)
+);
+
+/* Example Usage */
+root: newton_raphson(f, f_prime, 1, 1e-6);
+print("Root: ", root);
