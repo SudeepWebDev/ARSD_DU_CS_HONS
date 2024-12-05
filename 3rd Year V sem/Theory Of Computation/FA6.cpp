@@ -33,25 +33,43 @@ public:
     {
         if (initialState == -1)
         {
-            cerr << "Initial state is not set." << endl;
+            cerr << "Initial State not set";
             return false;
         }
-
         int currentState = initialState;
-
         for (char c : input)
         {
-            if (transitions.at(currentState).find(c) == transitions.at(currentState).end())
-                return false; // Transition not defined for current state and input symbol
+            auto stateTransitions = transitions.find(currentState);
+            if (stateTransitions == transitions.end())
+            {
+                return false;
+            }
+            auto nextState = stateTransitions->second.find(c);
+            if (nextState == stateTransitions->second.end())
+            {
+                return false;
+            }
 
-            currentState = transitions.at(currentState).at(c);
+            currentState = nextState->second;
         }
 
         return finalStates.find(currentState) != finalStates.end();
     }
+    void printTransitionTable() const
+    {
+        cout << "Transition Table:" << endl;
+        cout << "State" << "\t" << "Input" << "\t" << "Next State" << endl;
+        for (const auto &state : transitions)
+        {
+            for (const auto &trans : state.second)
+            {
+                cout << state.first << "\t" << trans.first << "\t" << trans.second << endl;
+            }
+        }
+        cout << endl;
+    };
 };
 
-// Helper function to combine two sets
 unordered_set<int> combineSets(const unordered_set<int> &set1, const unordered_set<int> &set2)
 {
     unordered_set<int> resultSet = set1;
@@ -59,22 +77,18 @@ unordered_set<int> combineSets(const unordered_set<int> &set1, const unordered_s
     return resultSet;
 }
 
-// Helper function to create a new state for a pair of states from two FAs
 int createStatePair(int state1, int state2, int numStates2)
 {
     return state1 * numStates2 + state2;
 }
 
-// Union of two finite automata
 FiniteAutomaton unionFA(const FiniteAutomaton &fa1, const FiniteAutomaton &fa2)
 {
     FiniteAutomaton resultFA;
     int numStates2 = fa2.transitions.size();
 
-    // Set initial state
     resultFA.setInitialState(createStatePair(fa1.initialState, fa2.initialState, numStates2));
 
-    // Combine transitions
     for (const auto &[state1, trans1] : fa1.transitions)
     {
         for (const auto &[state2, trans2] : fa2.transitions)
@@ -87,28 +101,31 @@ FiniteAutomaton unionFA(const FiniteAutomaton &fa1, const FiniteAutomaton &fa2)
         }
     }
 
-    // Combine final states
     for (int finalState1 : fa1.finalStates)
     {
-        for (int finalState2 : fa2.finalStates)
+        for (int state2 = 0; state2 < numStates2; ++state2)
         {
-            resultFA.addFinalState(createStatePair(finalState1, finalState2, numStates2));
+            resultFA.addFinalState(createStatePair(finalState1, state2, numStates2));
+        }
+    }
+    for (int finalState2 : fa2.finalStates)
+    {
+        for (int state1 = 0; state1 < fa1.transitions.size(); ++state1)
+        {
+            resultFA.addFinalState(createStatePair(state1, finalState2, numStates2));
         }
     }
 
     return resultFA;
 }
 
-// Intersection of two finite automata
 FiniteAutomaton intersectionFA(const FiniteAutomaton &fa1, const FiniteAutomaton &fa2)
 {
     FiniteAutomaton resultFA;
     int numStates2 = fa2.transitions.size();
 
-    // Set initial state
     resultFA.setInitialState(createStatePair(fa1.initialState, fa2.initialState, numStates2));
 
-    // Combine transitions
     for (const auto &[state1, trans1] : fa1.transitions)
     {
         for (const auto &[state2, trans2] : fa2.transitions)
@@ -121,7 +138,6 @@ FiniteAutomaton intersectionFA(const FiniteAutomaton &fa1, const FiniteAutomaton
         }
     }
 
-    // Combine final states
     for (int finalState1 : fa1.finalStates)
     {
         for (int finalState2 : fa2.finalStates)
@@ -133,18 +149,15 @@ FiniteAutomaton intersectionFA(const FiniteAutomaton &fa1, const FiniteAutomaton
     return resultFA;
 }
 
-// Concatenation of two finite automata
 FiniteAutomaton concatenateFA(const FiniteAutomaton &fa1, const FiniteAutomaton &fa2)
 {
     FiniteAutomaton resultFA;
     int offset = fa1.transitions.size();
 
-    // Copy transitions from fa1
     resultFA.transitions = fa1.transitions;
     resultFA.setInitialState(fa1.initialState);
     resultFA.finalStates = fa2.finalStates;
 
-    // Add transitions from fa2 with offset
     for (const auto &[state, trans] : fa2.transitions)
     {
         for (const auto &[input, nextState] : trans)
@@ -153,16 +166,14 @@ FiniteAutomaton concatenateFA(const FiniteAutomaton &fa1, const FiniteAutomaton 
         }
     }
 
-    // Add transitions for concatenation
     for (int finalState1 : fa1.finalStates)
     {
-        resultFA.addTransition(finalState1, 'e', fa2.initialState + offset); // 'e' for epsilon transition
+        resultFA.addTransition(finalState1, 'e', fa2.initialState + offset);
     }
 
     return resultFA;
 }
 
-// Example FA1: Automaton for strings starting with 'a'
 FiniteAutomaton createFA1()
 {
     FiniteAutomaton fa;
@@ -177,7 +188,6 @@ FiniteAutomaton createFA1()
     return fa;
 }
 
-// Example FA2: Automaton for strings ending with 'b'
 FiniteAutomaton createFA2()
 {
     FiniteAutomaton fa;
@@ -192,7 +202,13 @@ FiniteAutomaton createFA2()
 
     return fa;
 }
-
+void testFA(const FiniteAutomaton &fa, const vector<string> &testCases)
+{
+    for (const string &testCase : testCases)
+    {
+        cout << "Input: " << testCase << " -> " << (fa.isAccepted(testCase) ? "Accepted" : "Rejected") << endl;
+    }
+}
 int main()
 {
     FiniteAutomaton fa1 = createFA1();
@@ -201,7 +217,7 @@ int main()
     FiniteAutomaton unionResult = unionFA(fa1, fa2);
     FiniteAutomaton intersectionResult = intersectionFA(fa1, fa2);
     FiniteAutomaton concatenationResult = concatenateFA(fa1, fa2);
-
+    unionResult.printTransitionTable();
     string input;
     cout << "Enter input string: ";
     cin >> input;
@@ -209,6 +225,15 @@ int main()
     cout << "Union FA: " << (unionResult.isAccepted(input) ? "Accepted" : "Not Accepted") << endl;
     cout << "Intersection FA: " << (intersectionResult.isAccepted(input) ? "Accepted" : "Not Accepted") << endl;
     cout << "Concatenation FA: " << (concatenationResult.isAccepted(input) ? "Accepted" : "Not Accepted") << endl;
+    cout << "Testing Union FA:" << endl;
+    vector<string> unionTestCases = {"a", "ab", "b", "ba", "aa", "aab", "bab", "", "bb", "baaa"};
+    testFA(unionResult, unionTestCases);
 
+    cout << "\nTesting Intersection FA:" << endl;
+    vector<string> intersectionTestCases = {"ab", "aab", "aabb", "", "a", "b", "ba", "aa", "bb", "baaa"};
+    testFA(intersectionResult, intersectionTestCases);
+    cout << "\nTesting Concatenation FA:" << endl;
+    vector<string> concatenationTestCases = {"ab", "aab", "aabb", "aaab", "", "a", "b", "ba", "aa", "bb"};
+    testFA(concatenationResult, concatenationTestCases);
     return 0;
 }
