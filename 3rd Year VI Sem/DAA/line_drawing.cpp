@@ -1,5 +1,4 @@
 #include <iostream>
-#include <graphics.h> // Ensure you have the WinBGIm library installed
 #include <cmath>
 
 void drawLine(int x0, int y0, int x1, int y1) {
@@ -13,20 +12,14 @@ void drawLine(int x0, int y0, int x1, int y1) {
     float x = x0;
     float y = y0;
     for (int i = 0; i <= steps; i++) {
-        putpixel(round(x), round(y), WHITE);
+        std::cout << "(" << round(x) << ", " << round(y) << ")" << std::endl;
         x += xIncrement;
         y += yIncrement;
     }
 }
 
 int main() {
-    int gd = DETECT, gm;
-    initgraph(&gd, &gm, "");
-
     int x0 = 100, y0 = 100, x1 = 200, y1 = 200;
     drawLine(x0, y0, x1, y1);
-
-    getch();
-    closegraph();
     return 0;
 }

@@ -7,9 +7,9 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "externalConsole": true,
-      "cwd": "c:/Users/Sudeep/OneDrive - RAJDHANI COLLEGE/Desktop/ARSD_DU_CS_HONS/2nd Year 3rd Sem/Data Structures",
-      "program": "c:/Users/Sudeep/OneDrive - RAJDHANI COLLEGE/Desktop/ARSD_DU_CS_HONS/2nd Year 3rd Sem/Data Structures/build/Debug/outDebug",
+      "externalConsole": false,
+      "cwd": "/workspaces/ARSD_DU_CS_HONS",
+      "program": "/workspaces/ARSD_DU_CS_HONS/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
